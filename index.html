@@ -304,7 +304,7 @@
 <div id="toast"></div>
 
 <!-- SETUP -->
-<div id="setup-panel">
+<div id="setup-panel" class="hidden">
   <div class="setup-box">
     <h2>⚡ KanbanSheet</h2>
     <p>Cole a URL do seu Google Apps Script para conectar ao Google Sheets.</p>
@@ -342,7 +342,7 @@
 </header>
 
 <!-- BOARD -->
-<div id="board-wrapper" class="hidden">
+<div id="board-wrapper">
   <div class="board-header">
     <div class="board-title" id="board-title-display">Kanban</div>
     <div class="board-spacer"></div>
@@ -459,30 +459,22 @@ const COLS = [
   { id: 'Concluído',    label: 'Concluído',    color: '#5fd17e' },
 ];
 
-let SCRIPT_URL = '', BOARD_NAME = '';
+// ══════════════════════════════════════════════════════════════
+//  👇 TROQUE AQUI pela URL real do seu Google Apps Script
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyhSERERIe19sca4YGJ2gOupiX9dBdOdeD-xtzBCqXOsqfXYG0cW-UPr7i6MSKgRB0J/exec';
+//  👇 Nome que aparece no topo do board
+const BOARD_NAME = 'Futebol Antigo 2';
+// ══════════════════════════════════════════════════════════════
+
 let cards = [], draggingId = null, editingId = null, descBackup = '';
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
 function init() {
-  SCRIPT_URL = localStorage.getItem('ks_url')  || '';
-  BOARD_NAME = localStorage.getItem('ks_name') || 'Meu Kanban';
-  if (SCRIPT_URL) hidePanelAndLoad();
-}
-
-function saveConfig() {
-  const url  = document.getElementById('script-url').value.trim();
-  const name = document.getElementById('board-name').value.trim() || 'Meu Kanban';
-  if (!url) { toast('Cole a URL do Apps Script', 'err'); return; }
-  localStorage.setItem('ks_url', url); localStorage.setItem('ks_name', name);
-  SCRIPT_URL = url; BOARD_NAME = name;
   hidePanelAndLoad();
 }
 
 function openConfig() {
-  document.getElementById('script-url').value = SCRIPT_URL;
-  document.getElementById('board-name').value = BOARD_NAME;
-  document.getElementById('setup-panel').classList.remove('hidden');
-  document.getElementById('board-wrapper').classList.add('hidden');
+  alert('Para trocar a URL do script, edite o arquivo index.html e altere a variável SCRIPT_URL no início do código JavaScript.');
 }
 
 function hidePanelAndLoad() {
