@@ -100,10 +100,11 @@
   .setup-hint code { background: rgba(124,111,253,.2); padding: 1px 5px; border-radius: 4px; font-family: 'DM Mono', monospace; }
 
   /* BOARD */
-  #board-wrapper { padding: 24px 24px 40px; overflow-x: auto; min-height: calc(100vh - 58px); }
-  .board-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+  #board-wrapper { padding: 0; min-height: calc(100vh - 58px); display: flex; flex-direction: column; }
+  .board-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; padding: 24px 24px 0; }
   .board-title  { font-size: 1.4rem; font-weight: 800; }
   .board-spacer { flex: 1; }
+  .board-scroll { overflow-x: auto; padding: 0 24px 40px; flex: 1; }
   .board { display: flex; gap: 18px; align-items: flex-start; min-width: max-content; }
 
   /* COLUMN */
@@ -348,7 +349,9 @@
     <div class="board-spacer"></div>
     <button class="btn btn-primary btn-sm" onclick="openNewCard()">+ Novo Card</button>
   </div>
-  <div class="board" id="board"></div>
+  <div class="board-scroll">
+    <div class="board" id="board"></div>
+  </div>
 </div>
 
 <!-- CARD DETAIL MODAL -->
@@ -463,7 +466,7 @@ const COLS = [
 //  👇 TROQUE AQUI pela URL real do seu Google Apps Script
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyhSERERIe19sca4YGJ2gOupiX9dBdOdeD-xtzBCqXOsqfXYG0cW-UPr7i6MSKgRB0J/exec';
 //  👇 Nome que aparece no topo do board
-const BOARD_NAME = 'Futebol Antigo 2';
+const BOARD_NAME = 'Futebol Antigo';
 // ══════════════════════════════════════════════════════════════
 
 let cards = [], draggingId = null, editingId = null, descBackup = '';
